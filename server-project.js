@@ -226,43 +226,47 @@ app.get("/update-process", function (req, resp) {
 
     })
 })
-app.post("/mail-send",function(req,resp)
-{
-    let txtEmaill=req.body.txtEmaill;
-    
-    mysql.query("select * from users where email=?",[txtEmaill],function(err,result){
-        
-        if(err==null)
-        {
-            async function main() {
-                // send mail with defined transport object
-                const info = await transporter.sendMail({
-                  from: '"if you know u know 👻" <sajalsowna9@gmail.com>', // sender address
-                  to: txtEmaill, // list of receivers
-                  subject: "PASSWORD✔", // Subject line
-                  text:result[0].pwd, // plain text body
-                  html:result[0].pwd, // html body
-                  attachments:
-                  {
-                    filename: "messi.jpeg",
-                    path: __dirname+"/pics/"+ "messi.jpeg",
-                    contentType: "image/jpeg/jpg"
-                  }
-                });
-              
-                console.log("Message sent: %s", info.messageId);
-                // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
-              }
-              
-              main().catch(console.error);   
-        }
-        else
-        resp.send(err.message);
+app.post("/mail-send", function (req, resp) {
 
-  })
-   
-  
-})
+    let txtEmaill = req.body.txtEmaill;
+
+    mysql.query(
+        "select * from users where email=?",
+        [txtEmaill],
+        async function (err, result) {
+
+            if (err) {
+                return resp.send(err.message);
+            }
+
+            if (result.length == 0) {
+                return resp.send("User not found");
+            }
+
+            try {
+
+                await transporter.sendMail({
+                    from: '"I&C Team" <sajalsowna9@gmail.com>',
+                    to: txtEmaill,
+                    subject: "Your Password",
+                    text: result[0].pwd,
+                    html: "<b>Your Password is : " + result[0].pwd + "</b>",
+                    attachments: [{
+                        filename: "messi.jpeg",
+                        path: __dirname + "/pics/messi.jpeg",
+                        contentType: "image/jpeg"
+                    }]
+                });
+
+                resp.send("Password has been sent");
+
+            } catch (error) {
+                console.log(error);
+                resp.send("Unable to send email");
+            }
+
+        });
+});
 
 app.get("/infl-desh",function(req,resp)
 {

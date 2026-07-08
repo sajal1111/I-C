@@ -168,23 +168,29 @@ function chkDibbaA()
         
     })
 
-    $("#forgot").click(function(){
-        let obj={
-            type:"post",
-            url:"/mail-send",
-            data:{
-                txtEmaill:$("#txtEmaill").val(),
-            }
-        }
-        $.ajax(obj).done(function(resp){
-            alert("Password has been sent");
+    $("#forgot").click(function () {
 
-        }).fail(function(err)
-        {
-            alert(err.statusText);
-        })
-       
-    })
+    if ($("#txtEmaill").val().trim() == "") {
+        alert("Please enter your email first.");
+        return;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/mail-send",
+        data: {
+            txtEmaill: $("#txtEmaill").val()
+        },
+        success: function (resp) {
+            alert(resp);
+        },
+        error: function (err) {
+            alert("Something went wrong.");
+            console.log(err);
+        }
+    });
+
+});
 
     $("#admin").click(function(){
         let obj={
@@ -535,7 +541,7 @@ function chkDibbaA()
                             in</button>&nbsp;&nbsp;
                             <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button" data-bs-dismiss="modal">close
                               </button><br>
-                          <a class="text-muted" id="forgot" >Forgot password?</a>
+                          <a id="forgot" class="forgot-link">Forgot Password?</a>
                         </div>
       
                         <div class="d-flex align-items-center justify-content-center pb-4">

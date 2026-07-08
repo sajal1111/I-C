@@ -379,3 +379,21 @@ h1 a {
        }
     }
  }
+
+ .forgot-link{
+    color:#6c757d;
+    cursor:pointer;
+    text-decoration:none;
+    transition:0.3s ease;
+    font-weight:500;
+}
+
+.forgot-link:hover{
+    color:#0d6efd;
+    text-decoration:underline;
+    letter-spacing:0.4px;
+}
+
+.forgot-link:active{
+    color:#084298;
+}
