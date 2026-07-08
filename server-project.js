@@ -8,7 +8,9 @@ app.listen(2022, function () {
     console.log("Server Started :)");
 })
 const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
         user: "sajalsowna9@gmail.com",
         pass: "ircd nqqb utdo anwi"
