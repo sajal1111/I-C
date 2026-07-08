@@ -8,7 +8,7 @@ app.listen(2022, function () {
     console.log("Server Started :)");
 })
 const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_USER,
+    host: "smtp-relay.brevo.com",
     port: 587,
     secure: false,
     auth: {
