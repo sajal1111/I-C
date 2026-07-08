@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
     secure: false, // Use `true` for port 465, `false` for all other ports
     auth: {
       user: "sajalsowna9@gmail.com",
-      pass: "mtfi xdds dfvo lseh",
+      pass: "ircd nqqb utdo anwi",
     },
   });
 app.use(express.static("public"));
