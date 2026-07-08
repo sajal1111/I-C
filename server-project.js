@@ -8,12 +8,12 @@ app.listen(2022, function () {
     console.log("Server Started :)");
 })
 const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
+    host: process.env.SMTP_USER,
+    port: 587,
+    secure: false,
     auth: {
-        user: "sajalsowna9@gmail.com",
-        pass: "ircd nqqb utdo anwi"
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
     }
 });
 app.use(express.static("public"));
