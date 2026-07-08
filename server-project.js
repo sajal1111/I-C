@@ -251,19 +251,19 @@ app.post("/mail-send", function (req, resp) {
                     subject: "Your Password",
                     text: result[0].pwd,
                     html: "<b>Your Password is : " + result[0].pwd + "</b>",
-                    attachments: [{
-                        filename: "messi.jpeg",
-                        path: __dirname + "/pics/messi.jpeg",
-                        contentType: "image/jpeg"
-                    }]
+                    // attachments: [{
+                    //     filename: "messi.jpeg",
+                    //     path: __dirname + "/pics/messi.jpeg",
+                    //     contentType: "image/jpeg"
+                    // }]
                 });
 
                 resp.send("Password has been sent");
 
             } catch (error) {
-                console.log(error);
-                resp.send("Unable to send email");
-            }
+    console.log(error);
+    return resp.status(500).send(error.message);
+}
 
         });
 });
