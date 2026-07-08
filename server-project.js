@@ -8,15 +8,12 @@ app.listen(2022, function () {
     console.log("Server Started :)");
 })
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // Use `true` for port 465, `false` for all other ports
+    service: "gmail",
     auth: {
-      user: "sajalsowna9@gmail.com",
-      pass: "ircd nqqb utdo anwi",
-    },
-  });
+        user: "sajalsowna9@gmail.com",
+        pass: "ircd nqqb utdo anwi"
+    }
+});
 app.use(express.static("public"));
 app.use(express.urlencoded("true"));// converts binary form data to JSON Object
 app.use(fileuploader());
