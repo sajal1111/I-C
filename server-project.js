@@ -1,3 +1,4 @@
+require("dotenv").config();
 var express = require("express");
 var mysql = require("mysql2");
 var fileuploader = require("express-fileupload");
@@ -8,12 +9,10 @@ app.listen(2022, function () {
     console.log("Server Started :)");
 })
 const transporter = nodemailer.createTransport({
-    host: "smtp-relay.brevo.com",
-    port: 587,
-    secure: false,
+    service: "gmail",
     auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     }
 });
 app.use(express.static("public"));
