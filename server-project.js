@@ -91,6 +91,22 @@ app.get("/login-process", function (req, resp) {
     })
 
 })
+
+app.post("/admin-login",function(req,resp)
+{
+    let user=req.body.user;
+    let pass=req.body.pass;
+
+    if(user=="admin" && pass=="admin123")
+    {
+        resp.send("success");
+    }
+    else
+    {
+        resp.send("Invalid");
+    }
+})
+
 app.post("/profile-save",async function(req,resp)
 {
     let filename="";
